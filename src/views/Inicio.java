@@ -226,29 +226,16 @@ public class Inicio extends javax.swing.JFrame {
         String tituloDesejado = JOptionPane.showInputDialog("Insira o título da tarefa que deseja editar:");
         IntNoSimples noAtual = list.getPrimeiro();
 
-        boolean encontrouTarefa = false;
-
         while (noAtual != null) {
             if (noAtual.getTitulo().equals(tituloDesejado)) {
-                encontrouTarefa = true;
+                new EditarTarefas(list).setVisible(true);
                 break;
+            } else {
+                JOptionPane.showMessageDialog(null, "Tarefa não encontrada");
             }
             noAtual = noAtual.getProx();
         }
 
-        if (encontrouTarefa) {
-            // Solicita ao usuário que insira os novos valores para a tarefa
-            int novaDuracao = Integer.parseInt(JOptionPane.showInputDialog("Insira a nova duração da tarefa:"));
-            String novoTitulo = JOptionPane.showInputDialog("Insira o novo título da tarefa:");
-            String novaPrioridade = JOptionPane.showInputDialog("Insira a nova prioridade da tarefa:");
-
-            // Atualiza os atributos da tarefa com os novos valores fornecidos pelo usuário
-            noAtual.editarTarefa(novaDuracao, novoTitulo, novaPrioridade);
-
-            JOptionPane.showMessageDialog(null, "Tarefa editada com sucesso.");
-        } else {
-            JOptionPane.showMessageDialog(null, "Tarefa não encontrada.");
-        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
