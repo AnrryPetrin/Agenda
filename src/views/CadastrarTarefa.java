@@ -83,6 +83,11 @@ public class CadastrarTarefa extends javax.swing.JFrame {
         });
 
         cbxPrioridade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baixa", "Média", "Alta" }));
+        cbxPrioridade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxPrioridadeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -176,6 +181,10 @@ public class CadastrarTarefa extends javax.swing.JFrame {
         txtDuracao.setText("");
         txtTitulo.setText("");
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void cbxPrioridadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxPrioridadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxPrioridadeActionPerformed
 
 
 
