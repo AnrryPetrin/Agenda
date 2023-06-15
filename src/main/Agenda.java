@@ -4,13 +4,10 @@
  */
 package main;
 
-import ArvoreBinaria.Tree;
 import ArvoreBinaria.Node;
+import ArvoreBinaria.Tree;
 import java.util.Calendar;
-import java.util.HashMap;
-import listaEncadeada.IntNoSimples;
-import listaEncadeada.ListaEncadeada;
-//import java.util.Calendar;
+
 
 /**
  *
@@ -25,7 +22,28 @@ public class Agenda {
         // teste
         // testando como seria o funcionamento das datas na agenda
         
-
+        Calendar c1 = Calendar.getInstance();
+        Calendar c2 = Calendar.getInstance();
+        Calendar c3 = Calendar.getInstance();
+        
+        c1.set(2020, 12, 12);
+        c2.set(2021, 12, 12);
+        c3.set(2022, 12, 12);
+        
+        Node node1 = new Node(c1, "Médico");
+        Node node2 = new Node(c1, "Psico");
+        Node node3 = new Node(c1, "Fisio");
+        
+        Tree tree = new Tree();
+        
+        tree.insert(node1);
+        tree.insert(node2);
+        tree.insert(node3);
+        
+        System.out.println(node1);
+        System.out.println(tree.buscaAgendamento(node1, "Médico"));
+        
+        
 
     }
 
