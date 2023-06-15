@@ -2,12 +2,16 @@
 package views;
 
 import java.awt.Color;
+import java.util.Calendar;
+import listaEncadeada.IntNoSimples;
+import listaEncadeada.ListaEncadeada;
 
-public class Cadastrar_tarefa extends javax.swing.JFrame {
+public class CadastrarTarefa extends javax.swing.JFrame {
 
-
-    public Cadastrar_tarefa() {
+    ListaEncadeada list = new ListaEncadeada();
+    public CadastrarTarefa(ListaEncadeada list) {
         initComponents();
+        this.list = list;
         Color c = new Color(135, 206, 250);
         getContentPane().setBackground(c);
         
@@ -22,28 +26,45 @@ public class Cadastrar_tarefa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bt_voltar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         lb_data = new javax.swing.JLabel();
-        bt_limpar = new javax.swing.JButton();
         lb_nome = new javax.swing.JLabel();
+        txtTitulo = new javax.swing.JTextField();
         lb_prioridade = new javax.swing.JLabel();
-        tf_data = new javax.swing.JTextField();
-        tf_nome = new javax.swing.JTextField();
-        tf_prioridade = new javax.swing.JTextField();
-        btn_cadastrar = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
+        bt_limpar = new javax.swing.JButton();
+        bt_voltar = new javax.swing.JButton();
+        cbxPrioridade = new javax.swing.JComboBox<>();
+        txtDuracao = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Tarefas");
 
-        bt_voltar.setBackground(new java.awt.Color(255, 102, 102));
-        bt_voltar.setText("Voltar");
-        bt_voltar.addActionListener(new java.awt.event.ActionListener() {
+        lb_data.setText("Duração (min)");
+
+        lb_nome.setText("Nome da tarefa");
+
+        txtTitulo.setToolTipText("");
+        txtTitulo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTituloMouseClicked(evt);
+            }
+        });
+        txtTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_voltarActionPerformed(evt);
+                txtTituloActionPerformed(evt);
             }
         });
 
-        lb_data.setText("Data");
+        lb_prioridade.setText("Prioridade");
+
+        btnCadastrar.setBackground(new java.awt.Color(102, 255, 102));
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         bt_limpar.setBackground(new java.awt.Color(255, 102, 102));
         bt_limpar.setText("Limpar");
@@ -53,91 +74,77 @@ public class Cadastrar_tarefa extends javax.swing.JFrame {
             }
         });
 
-        lb_nome.setText("Nome da tarefa");
-
-        lb_prioridade.setText("Prioridade");
-
-        tf_data.setForeground(new java.awt.Color(153, 153, 153));
-        tf_data.setText("DD/MM/AAAA");
-        tf_data.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_dataMouseClicked(evt);
-            }
-        });
-        tf_data.addActionListener(new java.awt.event.ActionListener() {
+        bt_voltar.setBackground(new java.awt.Color(255, 102, 102));
+        bt_voltar.setText("Voltar");
+        bt_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_dataActionPerformed(evt);
+                bt_voltarActionPerformed(evt);
             }
         });
 
-        tf_nome.setToolTipText("");
-        tf_nome.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_nomeMouseClicked(evt);
-            }
-        });
-        tf_nome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_nomeActionPerformed(evt);
-            }
-        });
+        cbxPrioridade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baixa", "Média", "Alta" }));
 
-        btn_cadastrar.setBackground(new java.awt.Color(102, 255, 102));
-        btn_cadastrar.setText("Cadastrar");
-        btn_cadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cadastrarActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lb_data)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtDuracao, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lb_nome, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTitulo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lb_prioridade, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbxPrioridade, 0, 100, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bt_voltar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bt_limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(lb_data)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(lb_nome)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lb_prioridade)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbxPrioridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addComponent(btnCadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bt_limpar)
+                        .addGap(11, 11, 11)
+                        .addComponent(bt_voltar)
+                        .addGap(19, 19, 19))))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lb_data)
-                        .addContainerGap(221, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lb_nome)
-                            .addComponent(tf_nome)
-                            .addComponent(lb_prioridade)
-                            .addComponent(tf_data, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                            .addComponent(tf_prioridade))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(bt_voltar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_cadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bt_limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20))))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(lb_data)
-                .addGap(3, 3, 3)
-                .addComponent(tf_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lb_nome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tf_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lb_prioridade)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tf_prioridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_cadastrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bt_limpar)
-                .addGap(11, 11, 11)
-                .addComponent(bt_voltar)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -149,78 +156,37 @@ public class Cadastrar_tarefa extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_voltarActionPerformed
 
     private void bt_limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_limparActionPerformed
-        tf_data.setText("");
-        tf_nome.setText("");
-        tf_prioridade.setText("");
-
+        txtDuracao.setText("");
+        txtTitulo.setText("");
     }//GEN-LAST:event_bt_limparActionPerformed
 
-    private void tf_dataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_dataActionPerformed
+    private void txtTituloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTituloMouseClicked
+
+    }//GEN-LAST:event_txtTituloMouseClicked
+
+    private void txtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tf_dataActionPerformed
+    }//GEN-LAST:event_txtTituloActionPerformed
 
-    private void tf_nomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_nomeMouseClicked
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
 
-    }//GEN-LAST:event_tf_nomeMouseClicked
+        IntNoSimples node = new IntNoSimples(Integer.parseInt(txtDuracao.getText()), txtTitulo.getText(), (String) cbxPrioridade.getSelectedItem());
+        list.insereNo_fim(node);
+        list.exibeLista();
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private void tf_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_nomeActionPerformed
 
-    private void btn_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cadastrarActionPerformed
-        
-    }//GEN-LAST:event_btn_cadastrarActionPerformed
-
-    private void tf_dataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_dataMouseClicked
-        tf_data.setText("");
-        tf_data.setForeground(new Color(0, 0, 0));
-    }//GEN-LAST:event_tf_dataMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar_tarefa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar_tarefa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar_tarefa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar_tarefa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Cadastrar_tarefa().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_limpar;
     private javax.swing.JButton bt_voltar;
-    private javax.swing.JButton btn_cadastrar;
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JComboBox<String> cbxPrioridade;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lb_data;
     private javax.swing.JLabel lb_nome;
     private javax.swing.JLabel lb_prioridade;
-    private javax.swing.JTextField tf_data;
-    private javax.swing.JTextField tf_nome;
-    private javax.swing.JTextField tf_prioridade;
+    private javax.swing.JTextField txtDuracao;
+    private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }

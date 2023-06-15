@@ -2,9 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package agenda;
+package main;
 
+import ArvoreBinaria.Tree;
+import ArvoreBinaria.Node;
 import java.util.Calendar;
+import java.util.HashMap;
+import listaEncadeada.IntNoSimples;
+import listaEncadeada.ListaEncadeada;
+//import java.util.Calendar;
 
 /**
  *
@@ -18,13 +24,10 @@ public class Agenda {
     public static void main(String[] args) {
         // teste
         // testando como seria o funcionamento das datas na agenda
-        Calendar c1 = Calendar.getInstance();
-        Calendar c2 = Calendar.getInstance();
-       
-        c1.set(2020, 05, 1);
-        c2.set(2020, 05, 1);
-        c1.compareTo(c2);
+        
+
 
     }
+
     
 }
