@@ -36,14 +36,11 @@ public class Inicio extends javax.swing.JFrame {
         jTextArea2 = new javax.swing.JTextArea();
         lb_bemvindo = new javax.swing.JLabel();
         btnVisualizar = new javax.swing.JButton();
-        bt_excluir = new javax.swing.JButton();
         bt_sair = new javax.swing.JButton();
         bt_cadastrar = new javax.swing.JButton();
         lblDisplay = new javax.swing.JLabel();
-        tf_dataVisualizar = new javax.swing.JTextField();
         btnNovaAgenda = new javax.swing.JButton();
         btnVisualizarAgenda = new javax.swing.JButton();
-        btnReordenar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnEditar1 = new javax.swing.JButton();
 
@@ -64,14 +61,6 @@ public class Inicio extends javax.swing.JFrame {
         btnVisualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVisualizarActionPerformed(evt);
-            }
-        });
-
-        bt_excluir.setForeground(new java.awt.Color(51, 51, 51));
-        bt_excluir.setText("Excluir tarefas");
-        bt_excluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_excluirActionPerformed(evt);
             }
         });
 
@@ -99,15 +88,6 @@ public class Inicio extends javax.swing.JFrame {
         lblDisplay.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblDisplay.setOpaque(true);
 
-        tf_dataVisualizar.setForeground(new java.awt.Color(102, 102, 102));
-        tf_dataVisualizar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tf_dataVisualizar.setText("Data desejada");
-        tf_dataVisualizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tf_dataVisualizarMouseClicked(evt);
-            }
-        });
-
         btnNovaAgenda.setForeground(new java.awt.Color(51, 51, 51));
         btnNovaAgenda.setText("Novo agendamento");
         btnNovaAgenda.addActionListener(new java.awt.event.ActionListener() {
@@ -124,14 +104,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        btnReordenar.setForeground(new java.awt.Color(51, 51, 51));
-        btnReordenar.setText("Reordenar tarefas");
-        btnReordenar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReordenarActionPerformed(evt);
-            }
-        });
-
         btnEditar.setForeground(new java.awt.Color(51, 51, 51));
         btnEditar.setText("Editar tarefas");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +113,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         btnEditar1.setForeground(new java.awt.Color(51, 51, 51));
-        btnEditar1.setText("Editar agendamento");
+        btnEditar1.setText("Editar agenda");
         btnEditar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditar1ActionPerformed(evt);
@@ -161,46 +133,33 @@ public class Inicio extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lb_bemvindo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(220, 220, 220)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(tf_dataVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnVisualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bt_cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bt_sair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnNovaAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnVisualizarAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnReordenar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bt_excluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                            .addComponent(btnEditar1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
-                        .addGap(35, 35, 35))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnVisualizar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bt_cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bt_sair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnNovaAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVisualizarAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                    .addComponent(btnEditar1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tf_dataVisualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lb_bemvindo, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+                .addComponent(lb_bemvindo, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(bt_cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(12, 12, 12)
-                        .addComponent(btnVisualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnReordenar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bt_excluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(58, 58, 58)
-                        .addComponent(btnEditar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnVisualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(126, 126, 126)
                         .addComponent(btnNovaAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEditar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnVisualizarAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(28, 28, 28)
@@ -213,15 +172,12 @@ public class Inicio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bt_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_excluirActionPerformed
-
-    }//GEN-LAST:event_bt_excluirActionPerformed
-
     private void bt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sairActionPerformed
         dispose();
     }//GEN-LAST:event_bt_sairActionPerformed
 
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
+        list.bubbleSort();
         lblDisplay.setText("<html>");
         lblDisplay.setText(lblDisplay.getText() + list.exibeLista());
     }//GEN-LAST:event_btnVisualizarActionPerformed
@@ -229,11 +185,6 @@ public class Inicio extends javax.swing.JFrame {
     private void bt_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cadastrarActionPerformed
         new CadastrarTarefa(list).setVisible(true);
     }//GEN-LAST:event_bt_cadastrarActionPerformed
-
-    private void tf_dataVisualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_dataVisualizarMouseClicked
-        tf_dataVisualizar.setText("");
-        tf_dataVisualizar.setForeground(new Color(0, 0, 0));
-    }//GEN-LAST:event_tf_dataVisualizarMouseClicked
 
     private void btnNovaAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaAgendaActionPerformed
         new Agendamento(binaryTree).setVisible(true);
@@ -248,32 +199,15 @@ public class Inicio extends javax.swing.JFrame {
         lblDisplay.setText(lblDisplay.getText() + binaryTree.inOrder(binaryTree.getRoot(), ""));
     }//GEN-LAST:event_btnVisualizarAgendaActionPerformed
 
-    private void btnReordenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReordenarActionPerformed
-        list.bubbleSort();
-        lblDisplay.setText("<html>");
-        lblDisplay.setText(lblDisplay.getText() + list.exibeLista());
-
-    }//GEN-LAST:event_btnReordenarActionPerformed
-
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-        String tituloDesejado = JOptionPane.showInputDialog("Insira o título da tarefa que deseja editar:");
-        IntNoSimples noAtual = list.getPrimeiro();
 
-        while (noAtual != null) {
-            if (noAtual.getTitulo().equals(tituloDesejado)) {
-                new EditarTarefas(list).setVisible(true);
-                break;
-            } else {
-                JOptionPane.showMessageDialog(null, "Tarefa não encontrada");
-            }
-            noAtual = noAtual.getProx();
-        }
+        new EditarTarefas(list).setVisible(true);
+
 
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
-        // TODO add your handling code here:
+        new EditarAgendamento(binaryTree).setVisible(true);
       
 
     }//GEN-LAST:event_btnEditar1ActionPerformed
@@ -322,18 +256,15 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cadastrar;
-    private javax.swing.JButton bt_excluir;
     private javax.swing.JButton bt_sair;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEditar1;
     private javax.swing.JButton btnNovaAgenda;
-    private javax.swing.JButton btnReordenar;
     private javax.swing.JButton btnVisualizar;
     private javax.swing.JButton btnVisualizarAgenda;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel lb_bemvindo;
     private javax.swing.JLabel lblDisplay;
-    public transient javax.swing.JTextField tf_dataVisualizar;
     // End of variables declaration//GEN-END:variables
 }

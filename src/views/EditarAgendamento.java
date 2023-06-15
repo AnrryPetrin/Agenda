@@ -4,20 +4,24 @@
  */
 package views;
 
+import ArvoreBinaria.Node;
+import ArvoreBinaria.Tree;
+import java.util.Calendar;
+import java.util.HashSet;
 import javax.swing.JOptionPane;
-import listaEncadeada.IntNoSimples;
-import listaEncadeada.ListaEncadeada;
 
 /**
  *
  * @author Lucas
  */
-public class EditarTarefas extends javax.swing.JFrame {
+public class EditarAgendamento extends javax.swing.JFrame {
 
-    ListaEncadeada list = new ListaEncadeada();
-    public EditarTarefas(ListaEncadeada list) {
+
+    Tree binaryTree = new Tree();
+    Node node = new Node();
+    public EditarAgendamento(Tree binaryTree) {
         initComponents();
-        this.list = list;
+        this.binaryTree = binaryTree;
     }
 
     /**
@@ -36,10 +40,8 @@ public class EditarTarefas extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lb_nome = new javax.swing.JLabel();
         txtTitulo = new javax.swing.JTextField();
-        lb_prioridade = new javax.swing.JLabel();
-        cbxPrioridade = new javax.swing.JComboBox<>();
         lb_data = new javax.swing.JLabel();
-        txtDuracao = new javax.swing.JTextField();
+        txtData = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         txtTituloBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
@@ -70,7 +72,7 @@ public class EditarTarefas extends javax.swing.JFrame {
             }
         });
 
-        lb_nome.setText("Nome da tarefa");
+        lb_nome.setText("Nome do agendamento");
 
         txtTitulo.setToolTipText("");
         txtTitulo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,11 +86,13 @@ public class EditarTarefas extends javax.swing.JFrame {
             }
         });
 
-        lb_prioridade.setText("Prioridade");
+        lb_data.setText("Data");
 
-        cbxPrioridade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baixa", "Média", "Alta" }));
-
-        lb_data.setText("Duração (min)");
+        try {
+            txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -97,16 +101,11 @@ public class EditarTarefas extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTitulo)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lb_nome)
-                            .addComponent(lb_prioridade)
-                            .addComponent(lb_data))
-                        .addGap(0, 107, Short.MAX_VALUE))
-                    .addComponent(txtDuracao)
-                    .addComponent(cbxPrioridade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(lb_nome)
+                    .addComponent(lb_data)
+                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,13 +116,9 @@ public class EditarTarefas extends javax.swing.JFrame {
                 .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lb_data)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(lb_prioridade)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbxPrioridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         txtTituloBuscar.setToolTipText("");
@@ -138,7 +133,7 @@ public class EditarTarefas extends javax.swing.JFrame {
             }
         });
 
-        btnBuscar.setText("Buscar tarefa");
+        btnBuscar.setText("Buscar agendamento");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -152,7 +147,7 @@ public class EditarTarefas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(txtTituloBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(btnBuscar)
                 .addGap(19, 19, 19))
         );
@@ -170,37 +165,36 @@ public class EditarTarefas extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnVoltar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnVoltar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLimpar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(16, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnSalvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnLimpar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVoltar)
-                        .addGap(16, 16, 16))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnVoltar))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,6 +212,29 @@ public class EditarTarefas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+     
+        Calendar c1 = Calendar.getInstance();
+        String date = txtData.getText();
+        String[] dateList = date.split("/");
+
+        c1.set(Integer.parseInt(dateList[2]), Integer.parseInt(dateList[1]), Integer.parseInt(dateList[0]));
+        
+        node.setDate(c1);
+        node.setTitle(txtTitulo.getText());
+        
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        txtTituloBuscar.setText("");
+        txtTitulo.setText("");
+        txtData.setText("");
+    }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     private void txtTituloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTituloMouseClicked
 
     }//GEN-LAST:event_txtTituloMouseClicked
@@ -225,29 +242,6 @@ public class EditarTarefas extends javax.swing.JFrame {
     private void txtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTituloActionPerformed
-
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        int novaDuracao = Integer.parseInt(txtDuracao.getText());
-            String novoTitulo = txtTitulo.getText();
-            String novaPrioridade = (String) cbxPrioridade.getSelectedItem();
-                
-            IntNoSimples noAtual = list.getPrimeiro();
-
-            // Atualiza os atributos da tarefa com os novos valores fornecidos pelo usuário
-            noAtual.editarTarefa(novaDuracao, novoTitulo, novaPrioridade);
-
-            JOptionPane.showMessageDialog(null, "Tarefa editada com sucesso.");
-        
-    }//GEN-LAST:event_btnSalvarActionPerformed
-
-    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        txtDuracao.setText("");
-        txtTitulo.setText("");
-    }//GEN-LAST:event_btnLimparActionPerformed
-
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void txtTituloBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTituloBuscarMouseClicked
         // TODO add your handling code here:
@@ -258,23 +252,9 @@ public class EditarTarefas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTituloBuscarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        
-        String tituloDesejado = txtTituloBuscar.getText();
-        IntNoSimples noAtual = list.getPrimeiro();
-
-        while (noAtual != null) {
-            if (noAtual.getTitulo().equals(tituloDesejado)) {
-                txtTitulo.setText(noAtual.getTitulo());
-                txtDuracao.setText(String.valueOf(noAtual.getValor()));
-                cbxPrioridade.setSelectedItem(noAtual.getPrioridade());
-                return;
-            }
-            noAtual = noAtual.getProx();
-        }
-        
-        JOptionPane.showMessageDialog(null, "Tarefa não encontrada");
-
-        
+        node = binaryTree.buscaAgendamento(binaryTree.getRoot(), txtTituloBuscar.getText());
+        txtTitulo.setText(node.getTitle());
+        txtData.setText(binaryTree.dateToString(node.getDate()));
     }//GEN-LAST:event_btnBuscarActionPerformed
 
 
@@ -283,14 +263,12 @@ public class EditarTarefas extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JComboBox<String> cbxPrioridade;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lb_data;
     private javax.swing.JLabel lb_nome;
-    private javax.swing.JLabel lb_prioridade;
-    private javax.swing.JTextField txtDuracao;
+    private javax.swing.JFormattedTextField txtData;
     private javax.swing.JTextField txtTitulo;
     private javax.swing.JTextField txtTituloBuscar;
     // End of variables declaration//GEN-END:variables

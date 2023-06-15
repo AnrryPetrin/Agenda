@@ -3,6 +3,7 @@ package views;
 
 import java.awt.Color;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 import listaEncadeada.IntNoSimples;
 import listaEncadeada.ListaEncadeada;
 
@@ -177,7 +178,7 @@ public class CadastrarTarefa extends javax.swing.JFrame {
 
         IntNoSimples node = new IntNoSimples(Integer.parseInt(txtDuracao.getText()), txtTitulo.getText(), (String) cbxPrioridade.getSelectedItem());
         list.insereNo_fim(node);
-        list.exibeLista();
+        JOptionPane.showMessageDialog(null, "Agendamento criado.");
         txtDuracao.setText("");
         txtTitulo.setText("");
     }//GEN-LAST:event_btnCadastrarActionPerformed

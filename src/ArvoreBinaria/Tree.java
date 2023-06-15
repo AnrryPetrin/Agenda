@@ -43,10 +43,21 @@ public class Tree {
     }
 
     public String dateToString(Calendar c) {
-        if (c.get(Calendar.MONTH) == 0) {
-            return c.get(Calendar.DATE) + "/12/" + c.get(Calendar.YEAR) + "";
+        
+        String day = String.valueOf(c.get(Calendar.DATE));
+        String month =String.valueOf( c.get(Calendar.MONTH));
+        
+        if (c.get(Calendar.DATE) < 10) {
+            day = "0" + c.get(Calendar.DATE); 
+        } 
+        if (c.get(Calendar.MONTH) < 10) {
+            month = "0" + c.get(Calendar.MONTH); 
         }
-        return c.get(Calendar.DATE) + "/" + c.get(Calendar.MONTH) + "/" + c.get(Calendar.YEAR) + "";
+        
+        if (c.get(Calendar.MONTH) == 0) {
+            return day + "/12/" + c.get(Calendar.YEAR) + "";
+        }
+        return day + "/" + month + "/" + c.get(Calendar.YEAR) + "";
     }
 
     // Método de busca em uma árvore binária para encontrar o nó correspondente ao agendamento
