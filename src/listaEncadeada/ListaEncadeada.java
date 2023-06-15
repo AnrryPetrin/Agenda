@@ -199,7 +199,8 @@ public class ListaEncadeada {
         }
 
     }
-        
+    public IntNoSimples getPrimeiro() {
+        return primeiro;
+    }
 
-     
 }

@@ -20,8 +20,37 @@ public class Node {
         this.right = null;      // Inicializa o filho à direita como vazio
     }
 
+    public Calendar getDate() {
+        return date;
+    }
 
+    public void setDate(Calendar date) {
+        this.date = date;
+    }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Node getLeft() {
+        return left;
+    }
+
+    public void setLeft(Node left) {
+        this.left = left;
+    }
+
+    public Node getRight() {
+        return right;
+    }
+
+    public void setRight(Node right) {
+        this.right = right;
+    }
     
     
     

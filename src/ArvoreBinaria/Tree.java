@@ -7,12 +7,13 @@ package ArvoreBinaria;
 import java.util.Calendar;
 
 public class Tree {
+
     private Node root;
 
     public void insert(Node node) {
         this.root = insertRecursion(root, node);
     }
-    
+
     public Node insertRecursion(Node root, Node node) {
         if (root == null) {
             root = node;
@@ -27,9 +28,9 @@ public class Tree {
 
         return root;
     }
-    
+
     public String inOrder(Node place, String message) {                      // Algoritmo de navegação em ordem
-        
+
         if (place.left != null) {                   // Se o filho à esquerda não está vazio
             message = inOrder(place.left, message);                    // Pula para o filho à esquerda pela recursividade
         }
@@ -40,12 +41,35 @@ public class Tree {
         }
         return message;
     }
-    
+
     public String dateToString(Calendar c) {
         if (c.get(Calendar.MONTH) == 0) {
-           return c.get(Calendar.DATE) + "/12/" + c.get(Calendar.YEAR) + ""; 
+            return c.get(Calendar.DATE) + "/12/" + c.get(Calendar.YEAR) + "";
         }
         return c.get(Calendar.DATE) + "/" + c.get(Calendar.MONTH) + "/" + c.get(Calendar.YEAR) + "";
+    }
+
+    // Método de busca em uma árvore binária para encontrar o nó correspondente ao agendamento
+    public Node buscaAgendamento(Node currentNode, String tituloDesejado) {
+        if (currentNode == null) {
+            return null; // Agendamento não encontrado
+        }
+
+        if (currentNode.getTitle().equals(tituloDesejado)) {
+            return currentNode; // Agendamento encontrado
+        }
+
+        Node leftResult = buscaAgendamento(currentNode.getLeft(), tituloDesejado);
+        if (leftResult != null) {
+            return leftResult; // Agendamento encontrado na subárvore esquerda
+        }
+
+        Node rightResult = buscaAgendamento(currentNode.getRight(), tituloDesejado);
+        if (rightResult != null) {
+            return rightResult; // Agendamento encontrado na subárvore direita
+        }
+
+        return null; // Agendamento não encontrado
     }
 
     public Node getRoot() {
@@ -55,7 +79,5 @@ public class Tree {
     public void setRoot(Node root) {
         this.root = root;
     }
-    
-    
-    
+
 }

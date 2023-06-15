@@ -1,11 +1,11 @@
-
 package views;
 
-
+import ArvoreBinaria.Node;
 import ArvoreBinaria.Tree;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+import listaEncadeada.IntNoSimples;
 import listaEncadeada.ListaEncadeada;
-
 
 /**
  *
@@ -15,11 +15,12 @@ public class Inicio extends javax.swing.JFrame {
 
     Tree binaryTree = new Tree();
     ListaEncadeada list = new ListaEncadeada();
+
     public Inicio() {
         initComponents();
         Color c = new Color(135, 206, 250);
-        getContentPane().setBackground(c);  
-        
+        getContentPane().setBackground(c);
+
     }
 
     /**
@@ -43,6 +44,8 @@ public class Inicio extends javax.swing.JFrame {
         btnNovaAgenda = new javax.swing.JButton();
         btnVisualizarAgenda = new javax.swing.JButton();
         btnReordenar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnEditar1 = new javax.swing.JButton();
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
@@ -129,6 +132,22 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        btnEditar.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditar.setText("Editar tarefas");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnEditar1.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditar1.setText("Editar agendamento");
+        btnEditar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -154,7 +173,9 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(btnNovaAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnVisualizarAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnReordenar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bt_excluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
+                            .addComponent(bt_excluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(btnEditar1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
                         .addGap(35, 35, 35))))
         );
         layout.setVerticalGroup(
@@ -174,7 +195,11 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(btnReordenar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bt_excluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(136, 136, 136)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(58, 58, 58)
+                        .addComponent(btnEditar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnNovaAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnVisualizarAgenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -189,7 +214,7 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_excluirActionPerformed
-        
+
     }//GEN-LAST:event_bt_excluirActionPerformed
 
     private void bt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sairActionPerformed
@@ -206,8 +231,8 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_cadastrarActionPerformed
 
     private void tf_dataVisualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_dataVisualizarMouseClicked
-    tf_dataVisualizar.setText("");
-    tf_dataVisualizar.setForeground(new Color(0, 0, 0));
+        tf_dataVisualizar.setText("");
+        tf_dataVisualizar.setForeground(new Color(0, 0, 0));
     }//GEN-LAST:event_tf_dataVisualizarMouseClicked
 
     private void btnNovaAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaAgendaActionPerformed
@@ -218,17 +243,53 @@ public class Inicio extends javax.swing.JFrame {
         if (binaryTree.getRoot() == null) {
             return;
         }
-        
+
         lblDisplay.setText("<html>");
         lblDisplay.setText(lblDisplay.getText() + binaryTree.inOrder(binaryTree.getRoot(), ""));
     }//GEN-LAST:event_btnVisualizarAgendaActionPerformed
 
     private void btnReordenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReordenarActionPerformed
-        list.bubbleSort();  
+        list.bubbleSort();
         lblDisplay.setText("<html>");
         lblDisplay.setText(lblDisplay.getText() + list.exibeLista());
-        
+
     }//GEN-LAST:event_btnReordenarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+        String tituloDesejado = JOptionPane.showInputDialog("Insira o título da tarefa que deseja editar:");
+        IntNoSimples noAtual = list.getPrimeiro();
+
+        boolean encontrouTarefa = false;
+
+        while (noAtual != null) {
+            if (noAtual.getTitulo().equals(tituloDesejado)) {
+                encontrouTarefa = true;
+                break;
+            }
+            noAtual = noAtual.getProx();
+        }
+
+        if (encontrouTarefa) {
+            // Solicita ao usuário que insira os novos valores para a tarefa
+            int novaDuracao = Integer.parseInt(JOptionPane.showInputDialog("Insira a nova duração da tarefa:"));
+            String novoTitulo = JOptionPane.showInputDialog("Insira o novo título da tarefa:");
+            String novaPrioridade = JOptionPane.showInputDialog("Insira a nova prioridade da tarefa:");
+
+            // Atualiza os atributos da tarefa com os novos valores fornecidos pelo usuário
+            noAtual.editarTarefa(novaDuracao, novoTitulo, novaPrioridade);
+
+            JOptionPane.showMessageDialog(null, "Tarefa editada com sucesso.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Tarefa não encontrada.");
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditar1ActionPerformed
+        // TODO add your handling code here:
+      
+
+    }//GEN-LAST:event_btnEditar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,6 +337,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton bt_cadastrar;
     private javax.swing.JButton bt_excluir;
     private javax.swing.JButton bt_sair;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEditar1;
     private javax.swing.JButton btnNovaAgenda;
     private javax.swing.JButton btnReordenar;
     private javax.swing.JButton btnVisualizar;
