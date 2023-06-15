@@ -56,24 +56,16 @@
                       <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="tf_dataVisualizar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btnVisualizar" alignment="0" max="32767" attributes="0"/>
-                          <Component id="bt_cadastrar" max="32767" attributes="0"/>
-                          <Component id="bt_sair" alignment="1" max="32767" attributes="0"/>
-                          <Component id="btnNovaAgenda" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnVisualizarAgenda" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnEditar" alignment="1" pref="166" max="32767" attributes="0"/>
-                          <Component id="btnEditar1" alignment="1" pref="166" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="btnVisualizar" alignment="0" max="32767" attributes="0"/>
+                  <Component id="bt_cadastrar" max="32767" attributes="0"/>
+                  <Component id="bt_sair" alignment="1" max="32767" attributes="0"/>
+                  <Component id="btnNovaAgenda" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnVisualizarAgenda" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnEditar" alignment="1" pref="166" max="32767" attributes="0"/>
+                  <Component id="btnEditar1" alignment="1" pref="166" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,23 +73,20 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="tf_dataVisualizar" min="-2" max="-2" attributes="0"/>
-                  <Component id="lb_bemvindo" pref="48" max="32767" attributes="0"/>
-              </Group>
+              <Component id="lb_bemvindo" pref="48" max="32767" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="bt_cadastrar" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="btnVisualizar" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnEditar" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnVisualizar" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
+                      <Component id="btnNovaAgenda" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnEditar1" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnNovaAgenda" max="32767" attributes="0"/>
-                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Component id="btnVisualizarAgenda" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="bt_sair" max="32767" attributes="0"/>
@@ -177,21 +166,6 @@
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tf_dataVisualizar">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Data desejada"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tf_dataVisualizarMouseClicked"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="129"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JButton" name="btnNovaAgenda">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -230,7 +204,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="33" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Editar agendamento"/>
+        <Property name="text" type="java.lang.String" value="Editar agenda"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditar1ActionPerformed"/>

@@ -19,6 +19,10 @@ public class Node {
         this.left = null;       // Inicializa o filho à esquerda como vazio
         this.right = null;      // Inicializa o filho à direita como vazio
     }
+    
+    public Node() {
+        
+    }
 
     public Calendar getDate() {
         return date;
