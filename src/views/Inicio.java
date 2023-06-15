@@ -200,19 +200,9 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVisualizarAgendaActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-        String tituloDesejado = JOptionPane.showInputDialog("Insira o título da tarefa que deseja editar:");
-        IntNoSimples noAtual = list.getPrimeiro();
 
-        while (noAtual != null) {
-            if (noAtual.getTitulo().equals(tituloDesejado)) {
-                new EditarTarefas(list).setVisible(true);
-                break;
-            } else {
-                JOptionPane.showMessageDialog(null, "Tarefa não encontrada");
-            }
-            noAtual = noAtual.getProx();
-        }
+        new EditarTarefas(list).setVisible(true);
+
 
     }//GEN-LAST:event_btnEditarActionPerformed
 
