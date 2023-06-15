@@ -8,7 +8,7 @@ import java.util.Calendar;
 
 public class Node {
     
-    Calendar date;                   // Informação tipo inteiro
+    Calendar date;                   // Informação tipo Calendar
     String title;
     Node left;                  // Filho à esquerda
     Node right;                 // FIlho à direita

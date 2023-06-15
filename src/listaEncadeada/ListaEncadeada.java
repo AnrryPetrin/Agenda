@@ -124,7 +124,7 @@ public class ListaEncadeada {
         int i = 0;
         while (temp_no != null)
         {
-            message += temp_no.valor + " min - " + temp_no.titulo + " - " + temp_no.prioridade + "<br><br>";
+            message += temp_no.titulo + " - " + temp_no.valor + " min - " +  temp_no.prioridade + "<br><br>";
             temp_no = temp_no.prox;
             i++;
         }
@@ -134,7 +134,6 @@ public class ListaEncadeada {
     public void bubbleSort() {
         // Se a lista for menor que 2 o método é encerrado
         if (this.contarNos() < 2) {
-            this.exibeLista();
             return;
         }
         HashMap<String, Integer> hashMap = new HashMap<>();
